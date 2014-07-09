@@ -17,12 +17,10 @@ p.version("0.1")
   .parse(process.argv)
 
 p.input = path.resolve __dirname, p.input || ''
-p.output = path.resolve __dirname, p.output || ''
 
 assert(fs.existsSync(p.input), "invalid input path:#{p.input}")
-assert(fs.existsSync(p.output), "invalid output path:#{p.output}")
 
-console.log "[binding-to-snippet] START on :#{p.input}, output to:#{p.output}"
+console.log "# [binding-to-snippet] START on :#{p.input}, output to:#{p.output}"
 
 RESULT = []
 
@@ -82,7 +80,7 @@ walker.on "file", (root, fileStats, nextFile) ->
     if ~line.indexOf "-- @function [parent"
       arr = line.match(/@function\s+\[parent\=\#(\w+)\]\s+(\w+)/)
       if arr.length < 3
-        console.log "[binding-to-snippet] WARNING! Fail to parse function @ file:#{pathToFile} line:#{i + 1}"
+        console.log "# [binding-to-snippet] WARNING! Fail to parse function @ file:#{pathToFile} line:#{i + 1}"
         currentObj = {}
         continue
 
@@ -113,14 +111,20 @@ walker.on "file", (root, fileStats, nextFile) ->
   return
 
 walker.on "errors", (root, nodeStatsArray, next)->
-  console.log "[binding-to-snippet::on errors] fail to continue, root:#{root}"
+  console.log "# [binding-to-snippet::on errors] fail to continue, root:#{root}"
   process.exit(1)
   return
 
 walker.on "end", ->
-  content = RESULT.map((item)->obj2snippet(item)).join("\n")
-  console.log  content
+  content = "######### Cocos2d-x v3 MoonScript Snippets : START ######################\n\n"
+  content += RESULT.map((item)->obj2snippet(item)).join("\n")
+  content += "\n######### Cocos2d-x v3 MoonScript Snippets : END ########################"
 
+  if p.output
+    p.output = path.resolve __dirname, p.output || ''
+    fs.writeFileSync p.output, content
+  else
+    console.log  content
 
 
 

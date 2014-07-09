@@ -1,0 +1,34 @@
+{
+  "name": "cocos2dx-v3-lua-binding-to-vim-snippets",
+  "description": "Yi",
+  "version": "0.0.1",
+  "homepage": "https://github.com/yi/cocos2dx-v3-lua-binding-to-vim-snippets",
+  "author": {
+    "name": "yi",
+    "email": "yi2004@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yi/rungame-www.git"
+  },
+  "bugs": {
+    "url": "://github.com/yi/cocos2dx-v3-lua-binding-to-vim-snippets/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/yi/cocos2dx-v3-lua-binding-to-vim-snippets/LICENSE-NA"
+    }
+  ],
+  "main": "./binding-to-snippet.coffee",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "underscore": "1.5.2",
+    "commander": "2.2.0",
+    "walk": "2.3.3",
+    "readline": "0.0.3"
+  },
+  "keywords": []
+}

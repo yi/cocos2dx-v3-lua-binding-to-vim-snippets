@@ -29,7 +29,7 @@
     "commander": "2.2.0",
     "walk": "2.3.3",
     "debug": "0.8.1",
-    "readline": "0.0.3"
+    "readlines": "0.0.8"
   },
   "keywords": []
 }
